@@ -1,4 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import cors from "cors";
+const port = process.env.PORT || 3080;
+
+const app = express();
+
+mongoose
+  .connect(process.env.DB)
+  .then(() => console.log("DB is connected"))
+  .catch((e) => console.log(e));
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
